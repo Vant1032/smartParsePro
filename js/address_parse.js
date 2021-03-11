@@ -110,7 +110,7 @@ function smart(event) {
       if (res.length == 1) {
         res += "XX"; // 过滤掉一位的名字或者地址
       }
-      let addressObj = smatrAddress(res);
+      let addressObj = smartAddress(res);
       obj = Object.assign(obj, addressObj);
       if (JSON.stringify(addressObj) === "{}") {
         obj.name = res.replace("XX", "");
@@ -129,7 +129,7 @@ function smart(event) {
   return obj;
 }
 
-function smatrAddress(event) {
+function smartAddress(event) {
   smartObj = {};
   let address = event;
   //address=  event.replace(/\s/g, ''); //去除空格
@@ -285,9 +285,12 @@ function smatrAddress(event) {
       ) {
         //nothing
       } else {
+        // el 省
         el.children.forEach((item) => {
           //  if (item.name == smartObj.city) {
+          // item 市
           item.children.forEach((res) => {
+            // res 区
             if (res["county"].indexOf(matchAddress) != -1) {
               //省/市  || 省
               if (smartObj.province) {
